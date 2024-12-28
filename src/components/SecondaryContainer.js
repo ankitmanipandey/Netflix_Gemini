@@ -7,10 +7,9 @@ export default function SecondaryContainer() {
   return (
 
     <div className='bg-black'>
-      <div className="-mt-48 relative z-20">
-        <MovieList title={"Now Playing"} movies={movies.nowPlayingMovies} />
-        <MovieList title={"Trending"} movies={movies.nowPlayingMovies} />
-        <MovieList title={"Popular"} movies={movies.nowPlayingMovies} />
+      <div className=" -mt-30 md:-mt-44 relative z-20">
+        <MovieList title={"Trending"} movies={movies.trendingMovies} />
+        <MovieList title={"Popular"} movies={movies.popularMovies} />
       </div>
     </div>
   )
