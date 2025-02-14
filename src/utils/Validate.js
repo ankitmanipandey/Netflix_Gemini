@@ -5,7 +5,7 @@ export const checkValidData = (email, password, name) => {
 
     if (!isValidName) return "Name must contain only letters, spaces, hyphens & can't start with numbers."
     if (!isValidEmail) return "Email is not valid!!";
-    if (!isValidPassword) return "Your Password may be like eg..@Netlfix123";
+    if (!isValidPassword) return "Your Password may be like eg..@Netfix123";
     return null;
 
 }
