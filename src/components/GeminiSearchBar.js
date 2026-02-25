@@ -1,10 +1,9 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import lang from '../utils/languageConstants'
-import { GoogleGenerativeAI } from '@google/generative-ai'
 import { API_OPTIONS } from '../utils/constants'
 import { addGeminiMovieResult } from '../utils/geminiSlice'
-import { setSpinner, toggleSpinner } from '../utils/spinnerSlice'
+import { setSpinner } from '../utils/spinnerSlice'
 
 export default function GeminiSearchBar() {
     const langKey = useSelector(store => store.config.lang)
@@ -20,9 +19,13 @@ export default function GeminiSearchBar() {
             dispatch(setSpinner(true))
             const { GoogleGenerativeAI } = require("@google/generative-ai");
             const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_KEY);
-            const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-            const geminiquery = "Act as a movie recommendation system and suggest some movies for the query:" + `"${searchText.current.value}"` + " if the text name is the movie name then show only that particular movie name otherwise suggest similar movies which are comma separated,and don't prompt anything just suggest movies directly."
-            const prompt = geminiquery;
+            const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+            const geminiQuery = `Act as a movie recommendation system. Suggest movies for the query: "${searchText.current.value}". 
+                                If the query is a specific movie name, return ONLY that movie name. 
+                                Otherwise, suggest 5 similar movies, comma-separated. 
+                                Example Output: Gadar, Sholay, Don, Dhoom, Krrish
+                                Do not output any other text.`;
+            const prompt = geminiQuery;
             const result = await model.generateContent(prompt);
             const movies = (result.response.text()).split(",");
             const promiseArray = movies.map((movie) => searchMovieTMDB(movie));

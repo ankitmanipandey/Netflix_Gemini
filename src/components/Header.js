@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import logo from '../assets/logo.png'
 import { auth } from '../utils/firebase'
 import { onAuthStateChanged, signOut } from 'firebase/auth'

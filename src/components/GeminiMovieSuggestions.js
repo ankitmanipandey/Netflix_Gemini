@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import MovieList from './MovieList';
 import Spinner from './Spinner.js'
-import { toggleSpinner } from '../utils/spinnerSlice.js'
 
 export default function GeminiMovieSuggestions() {
   const gemini = useSelector(store => store.gemini)
-  const dispatch = useDispatch()
   const showSpinner = useSelector(store => store.spinner.showSpinner)
   const { movieResults, movieNames } = gemini;
 
